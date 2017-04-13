@@ -1783,7 +1783,7 @@ def GetHeaderGuardCPPVariable(filename):
     if suffix == '\\':
       suffix += '\\'
     file_path_from_root = re.sub('^' + _root + suffix, '', file_path_from_root)
-  return re.sub(r'[^a-zA-Z0-9]', '_', file_path_from_root).upper() + '_'
+  return re.sub(r'[^a-zA-Z0-9]', '_', file_path_from_root).upper() + ''
 
 
 def CheckForHeaderGuard(filename, clean_lines, error):
