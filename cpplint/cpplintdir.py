@@ -22,4 +22,4 @@ if __name__ == '__main__':
         sys.exit()
     for path in all_files(sys.argv[1],'*.cpp;*.h;*.c'):
 
-        os.system("python /home/link/Documents/cpplint/cpplint/cpplint.py %s"%(path))
+        os.system("python /opt/Documents/cpplint/cpplint/cpplint.py %s"%(path))

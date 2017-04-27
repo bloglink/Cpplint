@@ -5125,17 +5125,17 @@ def CheckCasts(filename, clean_lines, linenum, error):
     # - Placement new
     # - Alias declarations
     matched_funcptr = match.group(3)
-    if (matched_new_or_template is None and
-        not (matched_funcptr and
-             (Match(r'\((?:[^() ]+::\s*\*\s*)?[^() ]+\)\s*\(',
-                    matched_funcptr) or
-              matched_funcptr.startswith('(*)'))) and
-        not Match(r'\s*using\s+\S+\s*=\s*' + matched_type, line) and
-        not Search(r'new\(\S+\)\s*' + matched_type, line)):
-      error(filename, linenum, 'readability/casting', 4,
-            'Using deprecated casting style.  '
-            'Use static_cast<%s>(...) instead' %
-            matched_type)
+#    if (matched_new_or_template is None and
+#        not (matched_funcptr and
+#             (Match(r'\((?:[^() ]+::\s*\*\s*)?[^() ]+\)\s*\(',
+#                    matched_funcptr) or
+#              matched_funcptr.startswith('(*)'))) and
+#        not Match(r'\s*using\s+\S+\s*=\s*' + matched_type, line) and
+#        not Search(r'new\(\S+\)\s*' + matched_type, line)):
+#      error(filename, linenum, 'readability/casting', 4,
+#            'Using deprecated casting style.  '
+#            'Use static_cast<%s>(...) instead' %
+#            matched_type)
 
   if not expecting_function:
     CheckCStyleCast(filename, clean_lines, linenum, 'static_cast',
