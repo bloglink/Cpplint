@@ -4853,9 +4853,9 @@ def CheckPrintf(filename, clean_lines, linenum, error):
     error(filename, linenum, 'runtime/printf', 5,
           'Never use sprintf. Use snprintf instead.')
   match = Search(r'\b(strcpy|strcat)\s*\(', line)
-  if match:
-    error(filename, linenum, 'runtime/printf', 4,
-          'Almost always, snprintf is better than %s' % match.group(1))
+#  if match:
+#    error(filename, linenum, 'runtime/printf', 4,
+#          'Almost always, snprintf is better than %s' % match.group(1))
 
 
 def IsDerivedFunction(clean_lines, linenum):
