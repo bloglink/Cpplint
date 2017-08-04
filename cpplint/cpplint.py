@@ -1839,49 +1839,49 @@ def CheckForHeaderGuard(filename, clean_lines, error):
 
   # The guard should be PATH_FILE_H_, but we also allow PATH_FILE_H__
   # for backward compatibility.
-  if ifndef != cppvar:
-    error_level = 0
-    if ifndef != cppvar + '_':
-      error_level = 5
+#  if ifndef != cppvar:
+#    error_level = 0
+#    if ifndef != cppvar + '_':
+#      error_level = 5
 
-    ParseNolintSuppressions(filename, raw_lines[ifndef_linenum], ifndef_linenum,
-                            error)
-    error(filename, ifndef_linenum, 'build/header_guard', error_level,
-          '#ifndef header guard has wrong style, please use: %s' % cppvar)
+#    ParseNolintSuppressions(filename, raw_lines[ifndef_linenum], ifndef_linenum,
+#                            error)
+#    error(filename, ifndef_linenum, 'build/header_guard', error_level,
+#          '#ifndef header guard has wrong style, please use: %s' % cppvar)
 
   # Check for "//" comments on endif line.
-  ParseNolintSuppressions(filename, raw_lines[endif_linenum], endif_linenum,
-                          error)
-  match = Match(r'#endif\s*//\s*' + cppvar + r'(_)?\b', endif)
-  if match:
-    if match.group(1) == '_':
+#  ParseNolintSuppressions(filename, raw_lines[endif_linenum], endif_linenum,
+#                          error)
+#  match = Match(r'#endif\s*//\s*' + cppvar + r'(_)?\b', endif)
+#  if match:
+#    if match.group(1) == '_':
       # Issue low severity warning for deprecated double trailing underscore
-      error(filename, endif_linenum, 'build/header_guard', 0,
-            '#endif line should be "#endif  // %s"' % cppvar)
-    return
+#      error(filename, endif_linenum, 'build/header_guard', 0,
+#            '#endif line should be "#endif  // %s"' % cppvar)
+#    return
 
   # Didn't find the corresponding "//" comment.  If this file does not
   # contain any "//" comments at all, it could be that the compiler
   # only wants "/**/" comments, look for those instead.
   no_single_line_comments = True
-  for i in xrange(1, len(raw_lines) - 1):
-    line = raw_lines[i]
-    if Match(r'^(?:(?:\'(?:\.|[^\'])*\')|(?:"(?:\.|[^"])*")|[^\'"])*//', line):
-      no_single_line_comments = False
-      break
+#  for i in xrange(1, len(raw_lines) - 1):
+#    line = raw_lines[i]
+#    if Match(r'^(?:(?:\'(?:\.|[^\'])*\')|(?:"(?:\.|[^"])*")|[^\'"])*//', line):
+#      no_single_line_comments = False
+#      break
 
-  if no_single_line_comments:
-    match = Match(r'#endif\s*/\*\s*' + cppvar + r'(_)?\s*\*/', endif)
-    if match:
-      if match.group(1) == '_':
+#  if no_single_line_comments:
+#    match = Match(r'#endif\s*/\*\s*' + cppvar + r'(_)?\s*\*/', endif)
+#    if match:
+#      if match.group(1) == '_':
         # Low severity warning for double trailing underscore
-        error(filename, endif_linenum, 'build/header_guard', 0,
-              '#endif line should be "#endif  /* %s */"' % cppvar)
-      return
+#        error(filename, endif_linenum, 'build/header_guard', 0,
+#              '#endif line should be "#endif  /* %s */"' % cppvar)
+#      return
 
   # Didn't find anything
-  error(filename, endif_linenum, 'build/header_guard', 5,
-        '#endif line should be "#endif  // %s"' % cppvar)
+#  error(filename, endif_linenum, 'build/header_guard', 5,
+#        '#endif line should be "#endif  // %s"' % cppvar)
 
 
 def CheckHeaderFileIncluded(filename, include_state, error):
